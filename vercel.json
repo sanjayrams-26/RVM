@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/check-offline-machines",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
