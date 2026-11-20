@@ -21,15 +21,12 @@ Built with **Next.js 14+ (App Router)**, **TypeScript**, **Mongoose ODM (MongoDB
 The project reads configurations from `.env.local` (never commit this file):
 
 ```env
-MONGODB_URI=mongodb+srv://mohammedsuhail100506:mongo10@cluster0.zjpg81g.mongodb.net/rvm_system?retryWrites=true&w=majority
-JWT_ACCESS_SECRET=rvm_jwt_access_secret_key_2026_super_secure_key_100506
-JWT_REFRESH_SECRET=rvm_jwt_refresh_secret_key_2026_super_secure_key_100506
-JWT_ACCESS_EXPIRY=15m
-JWT_REFRESH_EXPIRY=7d
-NEXT_PUBLIC_APP_NAME=RVM Green Coin System
-NEXT_PUBLIC_STORAGE_ALERT_THRESHOLD=80
-NEXT_PUBLIC_STORAGE_CRITICAL_THRESHOLD=90
-IOT_API_KEY=rvm_iot_secret_api_key_2026_device_auth
+Security Notice
+Store database connection strings, JWT secrets, and IoT API keys securely in environment variables.
+Configure environment variables separately in the deployment platform.
+Use strong, unique secrets for authentication and device authorization.
+Restrict database network access to trusted IP addresses.
+Rotate any credentials that may have been accidentally exposed.
 ```
 
 ### 3. Seed Database
