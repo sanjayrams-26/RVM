@@ -66,6 +66,10 @@ This populates:
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+Live Link https://reverse-vending-web.vercel.app/
+Model simulation https://greenvision-delta.vercel.app/
+Short Video https://drive.google.com/file/d/1ZTHdM0LP_pCx8wiBSGn6RY7vreuLAgve/view?usp=sharing
+
 
 - **Public Landing Page**: `/`
 - **Login**: `/login` (Unified login for all three roles with automatic redirection)
