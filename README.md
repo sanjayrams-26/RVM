@@ -22,11 +22,15 @@ The project reads configurations from `.env.local` (never commit this file):
 
 ```env
 Security Notice
-Store database connection strings, JWT secrets, and IoT API keys securely in environment variables.
-Configure environment variables separately in the deployment platform.
-Use strong, unique secrets for authentication and device authorization.
-Restrict database network access to trusted IP addresses.
-Rotate any credentials that may have been accidentally exposed.
+
+Security is an important part of the GreenVision RVM platform.
+Sensitive credentials are managed through environment variables.
+Database connection strings and authentication secrets must never be committed to the public repository.
+Deployment environment variables should be configured securely through Vercel.
+Strong JWT secrets and IoT API keys should be used.
+Database access should be restricted to trusted network sources.
+Any accidentally exposed credentials must be rotated immediately.
+Demo accounts are intended for testing and demonstration purposes only.
 ```
 
 ### 3. Seed Database
