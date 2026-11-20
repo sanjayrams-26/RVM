@@ -1,101 +1,212 @@
-\# IoT-Enabled Reverse Vending Machine (RVM) Management Platform\
-\
-A complete multi-role web platform for managing a network of physical Reverse Vending Machines (RVMs) that accept recyclable plastic bottles and reward citizens with \*\*Green Coins\*\*.\
-\
-Built with \*\*Next.js 14+ (App Router)\*\*, \*\*TypeScript\*\*, \*\*Mongoose ODM (MongoDB Atlas)\*\*, \*\*Tailwind CSS (Light Theme)\*\*, \*\*JWT Authentication in httpOnly Cookies\*\*, \*\*Zod\*\*, and \*\*Recharts\*\*.\
-\
-\---\
-\
-\## 🔒 Security Notice\
-\> \*\*IMPORTANT SECURITY NOTE:\*\* MongoDB Atlas credentials were configured via \`.env.local\` using standard environment variables (\`process.env.MONGODB_URI\`). Please ensure you rotate the MongoDB password in your Atlas Security panel before deploying to production.\
-\
-\---\
-\
-\## 🚀 Quick Start Guide\
-\
-\### 1. Prerequisites\
-\- \*\*Node.js\*\* v18+ or v20+\
-\- \*\*npm\*\* or \*\*yarn\*\*\
-\
-\### 2. Environment Setup\
-The project reads configurations from \`.env.local\` (never commit this file):\
-\
-\`\`\`env\
-Security Notice\
-\
-Security is an important part of the GreenVision RVM platform.\
-Sensitive credentials are managed through environment variables.\
-Database connection strings and authentication secrets must never be committed to the public repository.\
-Deployment environment variables should be configured securely through Vercel.\
-Strong JWT secrets and IoT API keys should be used.\
-Database access should be restricted to trusted network sources.\
-Any accidentally exposed credentials must be rotated immediately.\
-Demo accounts are intended for testing and demonstration purposes only.\
-\`\`\`\
-\
-\### 3. Seed Database\
-Make sure your MongoDB Atlas cluster allows connection from your current IP (add \`0.0.0.0/0\` in Atlas Network Access for development). Then run:\
-\
-\`\`\`bash\
-npm run seed\
-\`\`\`\
-\
-This populates:\
-\- 1 Super Admin\
-\- 3 Districts (Coimbatore, Chennai, Madurai) with location nodes\
-\- 11 RVM Machines with realistic initial storage fill levels\
-\- 5 Field Technicians (Employees) with assigned machine units\
-\- 15 Registered Citizen Recyclers (Users)\
-\- 50+ Historical deposit transactions spanning the past 30 days\
-\
-\---\
-\
-\## 🔑 Demo Account Credentials\
-\
-\| Role | Portal URL | Email | Password |\
-\|---|---|---|---|\
-\| \*\*Admin\*\* | \`/admin/dashboard\` | \`admin@rvmgreencoin.org\` | \`Admin@1234\` |\
-\| \*\*Employee\*\* | \`/employee/dashboard\` | \`ramesh@rvm.org\` | \`Tech@1234\` |\
-\| \*\*User\*\* | \`/user/dashboard\` | \`user1@example.com\` | \`User@1234\` |\
-\
-\---\
-\
-\## 💻 Running the Web Application\
-\
-\### Start Development Server\
-\`\`\`bash\
-npm run dev\
-\`\`\`\
-Open [http\://localhost:3000]\(http\://localhost:3000) in your browser.\
-Live Link https\://reverse-vending-web.vercel.app/\
-Model simulation https\://greenvision-delta.vercel.app/\
-Short Video https\://drive.google.com/file/d/1ZTHdM0LP_pCx8wiBSGn6RY7vreuLAgve/view?usp=sharing\
-\
-\
-\- \*\*Public Landing Page\*\*: \`/\`\
-\- \*\*Login\*\*: \`/login\` (Unified login for all three roles with automatic redirection)\
-\- \*\*User Panel\*\*: \`/user/dashboard\`\
-\- \*\*Admin Panel\*\*: \`/admin/dashboard\`\
-\- \*\*Employee Panel\*\*: \`/employee/dashboard\`\
-\
-\---\
-\
-\## 🤖 Running the IoT Telemetry Simulator\
-\
-Physical RVM devices transmit hardware telemetry to \`POST /api/iot/machine-data\` authenticated via \`x-iot-api-key\`. To simulate live bottle deposits and storage level changes:\
-\
-\`\`\`bash\
-npm run simulator\
-\`\`\`\
-\
-The simulator script will post randomized telemetry events to your local server every 5 seconds.\
-\
-\---\
-\
-\## 📊 Build & Production Deployment\
-\
-To create an optimized production build:\
-\`\`\`bash\
-npm run build\
-npm start\
-\`\`\`
+# IoT-Enabled Reverse Vending Machine (RVM) Management Platform
+
+A complete multi-role web platform for managing a network of physical **Reverse Vending Machines (RVMs)** that collect recyclable plastic bottles and reward citizens with **Green Coins**.
+
+Built using **Next.js 14+ (App Router), TypeScript, MongoDB Atlas, Mongoose ODM, Tailwind CSS, JWT Authentication, Zod, and Recharts**.
+
+---
+
+## 🔒 Security Notice
+
+Security is a core part of the GreenVision RVM platform.
+
+- Sensitive credentials are managed through environment variables.
+- Database connection strings, JWT secrets, and IoT API keys must never be committed to the public repository.
+- Deployment environment variables should be configured securely through Vercel.
+- Use strong, unique JWT secrets and IoT API keys.
+- Restrict database access to trusted network sources.
+- Immediately rotate any credentials that may have been accidentally exposed.
+- Demo accounts are intended for testing and demonstration purposes only.
+
+**Important:** Never publish actual passwords, API keys, MongoDB connection strings, or authentication secrets in this repository.
+
+---
+
+## 🚀 Quick Start Guide
+
+### 1. Prerequisites
+
+Make sure the following tools are installed:
+
+- Node.js v18+ or v20+
+- npm or yarn
+- MongoDB Atlas account
+- Git
+
+### 2. Clone the Repository
+
+```bash
+git clone https://github.com/sanjayrams-26/RVM.git
+cd RVM
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Environment Setup
+
+Create a `.env.local` file in the root directory of the project.
+
+Add the following environment variables:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_strong_jwt_secret
+IOT_API_KEY=your_secure_iot_api_key
+```
+
+**Configuration instructions:**
+
+- Replace each placeholder with your actual project credentials.
+- Use the same environment variable names expected by your application.
+- Keep `.env.local` private and never upload it to GitHub.
+- Configure the corresponding environment variables in Vercel before deployment.
+
+### 5. Seed the Database
+
+Ensure your MongoDB Atlas cluster is configured to accept connections from your development environment.
+
+Run:
+
+```bash
+npm run seed
+```
+
+This populates the database with:
+
+- 1 Super Admin
+- 3 Districts (Coimbatore, Chennai, Madurai) with location nodes
+- 11 RVM Machines with initial storage fill levels
+- 5 Field Technicians with assigned machine units
+- 15 Registered Citizen Recyclers
+- 50+ Historical deposit transactions spanning the past 30 days
+
+---
+
+## 🔑 Demo Account Credentials
+
+The following accounts are intended for application demonstration and testing.
+
+| Role | Portal URL | Email | Password |
+|---|---|---|---|
+| **Admin** | `/admin/dashboard` | `admin@rvmgreencoin.org` | `Admin@1234` |
+| **Employee** | `/employee/dashboard` | `ramesh@rvm.org` | `Tech@1234` |
+| **User** | `/user/dashboard` | `user1@example.com` | `User@1234` |
+
+**Security:** These are demonstration credentials. Do not use them in production. Change default passwords before deploying publicly.
+
+---
+
+## 💻 Running the Web Application
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to:
+
+http://localhost:3000
+
+### Application Links
+
+| Component | URL |
+|---|---|
+| Public Landing Page | `/` |
+| Unified Login | `/login` |
+| User Dashboard | `/user/dashboard` |
+| Admin Dashboard | `/admin/dashboard` |
+| Employee Dashboard | `/employee/dashboard` |
+
+### Live Project Links
+
+- **Live Web Application:** https://reverse-vending-web.vercel.app/
+- **RVM Model Simulation:** https://greenvision-delta.vercel.app/
+- **Project Demonstration Video:** https://drive.google.com/file/d/1ZTHdM0LP_pCx8wiBSGn6RY7vreuLAgve/view?usp=sharing
+
+---
+
+## 🤖 Running the IoT Telemetry Simulator
+
+Physical RVM devices transmit hardware telemetry to the following API endpoint:
+
+```http
+POST /api/iot/machine-data
+```
+
+The endpoint authenticates incoming requests using the `x-iot-api-key` header.
+
+### Start the Simulator
+
+```bash
+npm run simulator
+```
+
+The simulator sends randomized telemetry events to your local server every 5 seconds.
+
+It simulates:
+
+- Bottle deposit events
+- Machine storage level changes
+- Live machine telemetry
+- Device-to-server communication
+
+This allows developers to test IoT functionality without requiring physical RVM hardware.
+
+---
+
+## 📊 Build & Production Deployment
+
+### Create an Optimized Production Build
+
+```bash
+npm run build
+```
+
+### Start the Production Server
+
+```bash
+npm start
+```
+
+### Deployment
+
+The application can be deployed using **Vercel** with MongoDB Atlas as the database.
+
+Before deployment:
+
+1. Configure all required environment variables in Vercel.
+2. Ensure MongoDB Atlas network access and database permissions are configured securely.
+3. Verify that no sensitive credentials are present in the GitHub repository.
+4. Use strong production secrets and change all default demo passwords.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Frontend | Next.js 14+, React, TypeScript |
+| Backend | Next.js API Routes |
+| Database | MongoDB Atlas |
+| ODM | Mongoose |
+| Styling | Tailwind CSS |
+| Authentication | JWT, HTTP-only Cookies |
+| Validation | Zod |
+| Data Visualization | Recharts |
+| Deployment | Vercel |
+| IoT Integration | REST API, Telemetry Simulator |
+
+---
+
+## 🌱 Project Objective
+
+The GreenVision RVM platform aims to encourage sustainable waste management by connecting physical reverse vending machines with a centralized digital management system.
+
+By rewarding citizens with Green Coins for recycling plastic bottles, the platform promotes responsible recycling habits while enabling administrators and field technicians to monitor and manage RVM operations efficiently.
+
+**GreenVision – Turning Plastic Waste into Digital Rewards.**
